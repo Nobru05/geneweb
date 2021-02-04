@@ -1,0 +1,27 @@
+I created this function to get directly the web page of the event place directly opened from
+the person page. This is very usefull when you don't know the configuration of villages around
+th place you are pointed to.
+
+In the file 'perso_utils.txt', the following function 
+
+<! ----------------------------------------- place event function ----------------->
+%define;event_location(xxx)
+  <a href="https://www.google.fr/maps/place/xxx" target="_blank" class="date">xxx</a>
+%end;
+<! ------------END-------------------------- place event function ----------------->
+
+**********************************************************
+
+How to use this function in 'etat_civil.txt' for example
+
+<! --------------- link with event -------------------------------------------------->
+      %if;has_birth_place; - %apply;event_location%with%birth_place;%end;%end;</li>%nl;
+<! --------------- link with event -------------------------------------------------->
+
+or :
+
+      %if;has_birth_place;
+<! --------------- link with event -------------------------------------------------->
+        <li>%apply;capitalize(nth([born],sex)) - %apply;event_location%with%birth_place;%end;</li>%nl;
+<! --------------- link with event -------------------------------------------------->
+      %end;
